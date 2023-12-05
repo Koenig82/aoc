@@ -1,1 +1,1 @@
-#include "years/2023/day01/star01.cpp"
+#include "years/2023/day01/day01.cpp"
