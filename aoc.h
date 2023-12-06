@@ -1,4 +1,7 @@
 #pragma once
+
+#include <vector>
+
 class Aoc {
 public:
     virtual void run1() = 0;
@@ -9,5 +12,5 @@ public:
         run1();
         return 0;
     }
-    //virtuevoid functipon()
+    std::vector<std::string> input;
 };

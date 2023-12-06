@@ -1,10 +1,10 @@
 #pragma once
-#include <vector>
 #include <string>
 #include <fstream>
 #include <iostream>
 
 #include "../../../aoc.h"
+#include "../../../util/util.h"
 
 class Y2023d02 : public Aoc {
 
@@ -12,9 +12,8 @@ class Y2023d02 : public Aoc {
     Y2023d02();
     virtual ~Y2023d02() = default;
 
-    std::vector<std::string> input;
-    
     void run1() override;
     void run2() override;
     
+    int getAmountOfColorinSet(std::string, std::string& set);
 };
