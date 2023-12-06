@@ -11,6 +11,7 @@ class Y2023d01 : public Aoc {
     public:
     Y2023d01();
     virtual ~Y2023d01() = default;
+    
     std::vector<std::string> input;
     
     void run1() override;
