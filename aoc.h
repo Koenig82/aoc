@@ -1,6 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <filesystem>
+#include <iostream>
+#include <fstream>
 
 class Aoc {
 public:

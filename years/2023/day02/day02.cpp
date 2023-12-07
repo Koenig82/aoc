@@ -2,8 +2,9 @@
 
 Y2023d02::Y2023d02(){
     std::fstream new_file;
-    new_file.open("years/2023/day02/input.txt", std::ios::in); 
-    
+    std::filesystem::path path(__FILE__);
+    path.replace_filename("input.txt");
+    new_file.open(path, std::ios::in); 
     if (new_file.is_open()) { 
         std::string string;
         while (getline(new_file, string)) { 
@@ -30,9 +31,9 @@ void Y2023d02::run1(){
         blue = 0;
         std::vector<std::string> sets = Util::split(string, ';');
         for(auto &&set : sets){
-            red += getAmountOfColorinSet("red", set);
-            green += getAmountOfColorinSet("green", set);
-            blue += getAmountOfColorinSet("blue", set);
+            red = getAmountOfColorinSet("red", set);
+            green = getAmountOfColorinSet("green", set);
+            blue = getAmountOfColorinSet("blue", set);
             if(red > 12 || green > 13 || blue > 14){
                 possible = false;
                 break;
@@ -46,19 +47,41 @@ void Y2023d02::run1(){
 }
 
 void Y2023d02::run2(){
+    int sum = 0;
 
+    int red;
+    int green;
+    int blue;
+
+    for (auto &&string : input){
+        red = 0;
+        green = 0;
+        blue = 0;
+        std::vector<std::string> sets = Util::split(string, ';');
+        for(auto &&set : sets){
+            if(getAmountOfColorinSet("red", set) > red){
+                red = getAmountOfColorinSet("red", set);
+            }
+            if(getAmountOfColorinSet("green", set) > green){
+                green = getAmountOfColorinSet("green", set);
+            }
+            if(getAmountOfColorinSet("blue", set) > blue){
+                blue = getAmountOfColorinSet("blue", set);
+            }
+        }
+        sum += (red*green*blue);
+
+    }
+    std::cout << sum << std::endl;
 }
 
 int Y2023d02::getAmountOfColorinSet(std::string color, std::string& set){
     std::string::size_type pos = 0;
     std::string numberString;
-    //std::cout << set << std::endl;
-    //std::cout << color << std::endl;
     while ((pos = set.find(color, pos )) != std::string::npos) {
           break;
     }
     if(pos == std::string::npos){
-        //std::cout << "returning: " << 0 << std::endl;
         return 0;
     }else{
         if(isdigit(set.substr(pos-3)[0])){
@@ -71,6 +94,5 @@ int Y2023d02::getAmountOfColorinSet(std::string color, std::string& set){
             numberString = set.substr(pos-2, 1);
         }
     }
-    //std::cout << "returning: " << stoi(numberString) << std::endl;
     return stoi(numberString);
 }

@@ -2,10 +2,10 @@
 
 
 Y2023d01::Y2023d01(){
-        
     std::fstream new_file;
-    new_file.open("years/2023/day01/input.txt", std::ios::in); 
-    
+    std::filesystem::path path(__FILE__);
+    path.replace_filename("input.txt");
+    new_file.open(path, std::ios::in); 
     if (new_file.is_open()) { 
         std::string string;
         while (getline(new_file, string)) { 
