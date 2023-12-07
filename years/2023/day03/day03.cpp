@@ -15,7 +15,11 @@ Y2023d03::Y2023d03(){
 }
 
 void Y2023d03::run1(){
-    std::cout << "dsfgsdgf" << std::endl;
+    std::vector<std::vector<char>> matrix = MatrixUtil::createMatrix(input);
+
+    MatrixUtil::printMatrix(matrix);
+
+    std::cout << matrix[4][2] << std::endl;
 
 }
 

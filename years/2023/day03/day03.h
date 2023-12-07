@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../../../aoc.h"
+#include "../../../util/matrixUtil.h"
 
 class Y2023d03 : public Aoc {
 
