@@ -17,11 +17,9 @@ Y2023d03::Y2023d03(){
 void Y2023d03::run1(){
     std::cout << "dsfgsdgf" << std::endl;
 
-
 }
 
 void Y2023d03::run2(){
 
-
-    
+ 
 }
