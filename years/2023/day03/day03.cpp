@@ -15,11 +15,15 @@ Y2023d03::Y2023d03(){
 }
 
 void Y2023d03::run1(){
-    std::vector<std::vector<char>> matrix = MatrixUtil::createMatrix(input);
+    for(int i = 0; i < input.size(); i++){
+        if(i == 0){
+            
+        }else if(i == input.size()-1){
 
-    MatrixUtil::printMatrix(matrix);
+        }else{
 
-    std::cout << matrix[4][2] << std::endl;
+        }
+    }
 
 }
 
