@@ -12,4 +12,6 @@ class Y2023d03 : public Aoc {
     void run1() override;
     void run2() override;
 
+    std::vector<int> findConnectedNumbersInInputIndexString(int rowIndex);
+    bool isSpecialChar(const char character);
 };
