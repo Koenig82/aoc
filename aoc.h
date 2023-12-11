@@ -7,13 +7,13 @@
 #include <vector>
 
 class Aoc {
-   public:
+  public:
     virtual void run1() = 0;
     virtual void run2() = 0;
     virtual ~Aoc() = default;
     int start() {
         // int time = 0;
-        run1();
+        run2();
         return 0;
     }
     std::vector<std::string> input;
