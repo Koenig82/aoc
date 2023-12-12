@@ -72,7 +72,7 @@ void Y2023d04::run2() {
             }
         }
     }
-    for (int extraTicketsindex = 0; extraTicketsindex < extraTickets.size();
+    for (size_t extraTicketsindex = 0; extraTicketsindex < extraTickets.size();
          extraTicketsindex++) {
         for (int i = 0; i < extraTickets[extraTicketsindex]; i++) {
             cardindex = extraTicketsindex;

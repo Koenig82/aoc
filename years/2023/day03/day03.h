@@ -6,24 +6,24 @@
 #include "../../../util/matrixUtil.h"
 
 class Y2023d03 : public Aoc {
-   public:
+  public:
     Y2023d03();
     virtual ~Y2023d03() = default;
 
     void run1() override;
     void run2() override;
 
-    std::vector<int> findConnectedNumbersInInputIndexString(int rowIndex);
+    std::vector<int> findConnectedNumbersInInputIndexString(size_t rowIndex);
 
-    int addNumbersAroundGear(const int gearPosRow, const int gearPosCol);
+    int addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol);
     bool isSpecialChar(const char character);
     bool isGear(const char character);
     class GearPos {
-       public:
+      public:
         int row;
         int col;
         GearPos(int inRow, int inCol);
-        bool operator==(const GearPos& other) const {
+        bool operator==(const GearPos &other) const {
             return (row == other.row) && (col == other.col);
         }
     };
@@ -32,10 +32,9 @@ class Y2023d03 : public Aoc {
 };
 
 namespace std {
-template <>
-struct hash<Y2023d03::GearPos> {
-    std::size_t operator()(const Y2023d03::GearPos& obj) const {
+template <> struct hash<Y2023d03::GearPos> {
+    std::size_t operator()(const Y2023d03::GearPos &obj) const {
         return std::hash<int>()(obj.row) ^ std::hash<int>()(obj.col);
     }
 };
-}  // namespace std
+} // namespace std

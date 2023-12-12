@@ -21,7 +21,7 @@ void Y2023d03::run1() {
         std::vector<int> vec = findConnectedNumbersInInputIndexString(i);
         numbers.insert(std::end(numbers), std::begin(vec), std::end(vec));
     }
-    for (auto&& number : numbers) {
+    for (auto &&number : numbers) {
         sum += number;
     }
     std::cout << sum << std::endl;
@@ -34,7 +34,7 @@ void Y2023d03::run2() {
 
     gearmap = findGearNumbersInStringIndex();
 
-    for (const auto& pair : gearmap) {
+    for (const auto &pair : gearmap) {
         // std::cout << "Key: " << pair.first << ", Value: " << pair.second
         //           << std::endl;
         if (pair.second.size() == 2) {
@@ -44,15 +44,13 @@ void Y2023d03::run2() {
     std::cout << sum << std::endl;
 }
 
-std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(
-    int rowIndex) {
+std::vector<int>
+Y2023d03::findConnectedNumbersInInputIndexString(size_t rowIndex) {
     std::vector<int> result;
-    int numberlen;
     int startpos;
-    int number;
     bool addnumber = false;
     if (rowIndex == 0) {
-        for (int i = 0; i < input[rowIndex].size(); i++) {
+        for (size_t i = 0; i < input[rowIndex].size(); i++) {
             if (isdigit(input[rowIndex][i])) {
                 startpos = i;
                 if (i > 0 && (isSpecialChar(input[rowIndex + 1][i - 1]) ||
@@ -82,7 +80,7 @@ std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(
             }
         }
     } else if (rowIndex == input.size() - 1) {
-        for (int i = 0; i < input[rowIndex].size(); i++) {
+        for (size_t i = 0; i < input[rowIndex].size(); i++) {
             if (isdigit(input[rowIndex][i])) {
                 startpos = i;
                 if (i > 0 && (isSpecialChar(input[rowIndex - 1][i - 1]) ||
@@ -112,7 +110,7 @@ std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(
             }
         }
     } else {
-        for (int i = 0; i < input[rowIndex].size(); i++) {
+        for (size_t i = 0; i < input[rowIndex].size(); i++) {
             if (isdigit(input[rowIndex][i])) {
                 startpos = i;
                 if (i > 0 && (isSpecialChar(input[rowIndex - 1][i - 1]) ||
@@ -153,15 +151,13 @@ std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(
 std::unordered_map<Y2023d03::GearPos, std::vector<int>>
 Y2023d03::findGearNumbersInStringIndex() {
     std::unordered_map<GearPos, std::vector<int>> result;
-    int numberlen;
     int startpos;
-    int number;
     bool addnumber = false;
     int gearRow;
     int gearCol;
     for (size_t rowIndex = 0; rowIndex < input.size(); rowIndex++) {
         if (rowIndex == 0) {
-            for (int i = 0; i < input[rowIndex].size(); i++) {
+            for (size_t i = 0; i < input[rowIndex].size(); i++) {
                 if (isdigit(input[rowIndex][i])) {
                     startpos = i;
                     if (i > 0 && isGear(input[rowIndex + 1][i - 1])) {
@@ -214,7 +210,7 @@ Y2023d03::findGearNumbersInStringIndex() {
                 }
             }
         } else if (rowIndex == input.size() - 1) {
-            for (int i = 0; i < input[rowIndex].size(); i++) {
+            for (size_t i = 0; i < input[rowIndex].size(); i++) {
                 if (isdigit(input[rowIndex][i])) {
                     startpos = i;
                     if (i > 0 && isGear(input[rowIndex - 1][i - 1])) {
@@ -267,7 +263,7 @@ Y2023d03::findGearNumbersInStringIndex() {
                 }
             }
         } else {
-            for (int i = 0; i < input[rowIndex].size(); i++) {
+            for (size_t i = 0; i < input[rowIndex].size(); i++) {
                 if (isdigit(input[rowIndex][i])) {
                     startpos = i;
                     if (i > 0 && isGear(input[rowIndex - 1][i - 1])) {
@@ -345,7 +341,8 @@ Y2023d03::findGearNumbersInStringIndex() {
     return result;
 }
 
-int Y2023d03::addNumbersAroundGear(const int gearPosRow, const int gearPosCol) {
+int Y2023d03::addNumbersAroundGear(const size_t gearPosRow,
+                                   const int gearPosCol) {
     int i = 0;
     int startPos;
     if (gearPosRow == 0) {
