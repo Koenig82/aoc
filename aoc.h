@@ -14,7 +14,6 @@ class Aoc {
     int start() {
         // int time = 0;
         run1();
-        run2();
         return 0;
     }
     std::vector<std::string> input;
