@@ -54,7 +54,20 @@ void Y2023d05::run1() {
         }
     }
     int test = seedsSoil.calc(79);
-    std::cout << test << std::endl;
+    std::cout << "seed to soil: " << test << std::endl;
+    test = soilFert.calc(test);
+    std::cout << "soul to fert: " << test << std::endl;
+    test = fertWater.calc(test);
+    std::cout << "fert to water: " << test << std::endl;
+    test = waterLight.calc(test);
+    std::cout << "water to light: " << test << std::endl;
+    test = lightTemp.calc(test);
+    std::cout << "light to temp: " << test << std::endl;
+    test = tempHum.calc(test);
+    std::cout << "temp to hum: " << test << std::endl;
+    test = humLoc.calc(test);
+    std::cout << "hum to loc: " << test << std::endl;
+    humLoc.printMaps();
 }
 
 void Y2023d05::run2() {}
