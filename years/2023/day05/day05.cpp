@@ -53,20 +53,8 @@ void Y2023d05::run1() {
             humLoc = makeBlockAtIndex(i);
         }
     }
-
-    seedsSoil.printMaps();
-    std::cout << " " << std::endl;
-    soilFert.printMaps();
-    std::cout << " " << std::endl;
-    fertWater.printMaps();
-    std::cout << " " << std::endl;
-    waterLight.printMaps();
-    std::cout << " " << std::endl;
-    lightTemp.printMaps();
-    std::cout << " " << std::endl;
-    tempHum.printMaps();
-    std::cout << " " << std::endl;
-    humLoc.printMaps();
+    int test = seedsSoil.calc(79);
+    std::cout << test << std::endl;
 }
 
 void Y2023d05::run2() {}
@@ -84,6 +72,18 @@ void MappingBlock::printMaps() {
         std::cout << vector[0] << " " << vector[1] << " " << vector[2]
                   << std::endl;
     }
+}
+
+int MappingBlock::calc(const int in) {
+    int out;
+    for (auto &&vec : maps) {
+        if (in >= vec[1] && in < (vec[1] + vec[2])) {
+            out = in + (vec[0] - vec[1]);
+        } else {
+            out = in;
+        }
+    }
+    return out;
 }
 
 MappingBlock Y2023d05::makeBlockAtIndex(size_t &i) {

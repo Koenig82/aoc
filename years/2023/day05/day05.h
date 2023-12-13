@@ -12,6 +12,7 @@ class MappingBlock {
     ~MappingBlock() = default;
 
     void printMaps();
+    int calc(const int in);
 };
 
 class Y2023d05 : public Aoc {
