@@ -9,4 +9,5 @@ class StringUtil {
     static std::vector<std::string> split(const std::string &string,
                                           char delim);
     static std::vector<int> getIntsFromString(const std::string &string);
+    static std::vector<long long> getLongLongsFromString(const std::string &string);
 };

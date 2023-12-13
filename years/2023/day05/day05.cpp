@@ -15,13 +15,7 @@ Y2023d05::Y2023d05() {
 }
 
 void Y2023d05::run1() {
-    std::vector<int> seeds = StringUtil::getIntsFromString(input[0]);
-
-    for (auto &&number : seeds) {
-        std::cout << number << " ";
-    }
-    std::cout << std::endl;
-    std::cout << " " << std::endl;
+    std::vector<long long> seeds = StringUtil::getLongLongsFromString(input[0]);
 
     MappingBlock seedsSoil;
     MappingBlock soilFert;
@@ -53,21 +47,16 @@ void Y2023d05::run1() {
             humLoc = makeBlockAtIndex(i);
         }
     }
-    int test = seedsSoil.calc(79);
-    std::cout << "seed to soil: " << test << std::endl;
-    test = soilFert.calc(test);
-    std::cout << "soul to fert: " << test << std::endl;
-    test = fertWater.calc(test);
-    std::cout << "fert to water: " << test << std::endl;
-    test = waterLight.calc(test);
-    std::cout << "water to light: " << test << std::endl;
-    test = lightTemp.calc(test);
-    std::cout << "light to temp: " << test << std::endl;
-    test = tempHum.calc(test);
-    std::cout << "temp to hum: " << test << std::endl;
-    test = humLoc.calc(test);
-    std::cout << "hum to loc: " << test << std::endl;
-    humLoc.printMaps();
+    long long lowest = LLONG_MAX;
+    long long location;
+    for (auto &&number : seeds) {
+        location = humLoc.calc(tempHum.calc(lightTemp.calc(waterLight.calc(fertWater.calc(soilFert.calc(seedsSoil.calc(number)))))));
+        std::cout << location << std::endl;
+        if(location < lowest){
+            lowest = location;
+        }
+    }
+    std::cout << lowest << std::endl;
 }
 
 void Y2023d05::run2() {}
@@ -75,7 +64,7 @@ void Y2023d05::run2() {}
 MappingBlock::MappingBlock(const std::vector<std::string> &inputs,
                            int startindex, int endIndex) {
     for (int i = startindex; i <= endIndex; i++) {
-        std::vector<int> numbers = StringUtil::getIntsFromString(inputs[i]);
+        std::vector<long long> numbers = StringUtil::getLongLongsFromString(inputs[i]);
         maps.push_back(numbers);
     }
 }
@@ -87,8 +76,8 @@ void MappingBlock::printMaps() {
     }
 }
 
-int MappingBlock::calc(const int in) {
-    int out = in;
+long long MappingBlock::calc(const long long in) {
+    long long out = in;
     for (auto &&vec : maps) {
         if (in >= vec[1] && in < (vec[1] + vec[2])) {
             out = in + (vec[0] - vec[1]);

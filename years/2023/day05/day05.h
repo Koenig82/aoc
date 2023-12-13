@@ -5,14 +5,14 @@
 
 class MappingBlock {
   public:
-    std::vector<std::vector<int>> maps;
+    std::vector<std::vector<long long>> maps;
     MappingBlock(const std::vector<std::string> &inputs, int startindex,
                  int endIndex);
     MappingBlock() : maps(){};
     ~MappingBlock() = default;
 
     void printMaps();
-    int calc(const int in);
+    long long calc(const long long in);
 };
 
 class Y2023d05 : public Aoc {
