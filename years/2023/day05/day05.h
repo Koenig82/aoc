@@ -3,16 +3,6 @@
 #include "../../../aoc.h"
 #include "../../../util/stringUtil.h"
 
-class Y2023d05 : public Aoc {
-
-  public:
-    Y2023d05();
-    virtual ~Y2023d05() = default;
-
-    void run1() override;
-    void run2() override;
-};
-
 class MappingBlock {
   public:
     std::vector<std::vector<int>> maps;
@@ -22,4 +12,16 @@ class MappingBlock {
     ~MappingBlock() = default;
 
     void printMaps();
+};
+
+class Y2023d05 : public Aoc {
+
+  public:
+    Y2023d05();
+    virtual ~Y2023d05() = default;
+
+    void run1() override;
+    void run2() override;
+
+    MappingBlock makeBlockAtIndex(size_t &i);
 };
