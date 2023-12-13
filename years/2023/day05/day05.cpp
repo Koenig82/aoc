@@ -88,12 +88,11 @@ void MappingBlock::printMaps() {
 }
 
 int MappingBlock::calc(const int in) {
-    int out;
+    int out = in;
     for (auto &&vec : maps) {
         if (in >= vec[1] && in < (vec[1] + vec[2])) {
             out = in + (vec[0] - vec[1]);
-        } else {
-            out = in;
+            break;
         }
     }
     return out;
