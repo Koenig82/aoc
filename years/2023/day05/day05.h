@@ -13,6 +13,8 @@ class MappingBlock {
 
     void printMaps();
     long long calc(const long long in);
+    std::vector<std::pair<long long, long long>>
+    calcRanges(std::pair<long long, long long> in);
 };
 
 class Y2023d05 : public Aoc {
