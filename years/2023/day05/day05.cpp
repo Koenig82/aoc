@@ -59,7 +59,7 @@ void Y2023d05::run1() {
     }
     std::cout << lowest << std::endl;
 }
-
+// TODO why is there a 0 range in results?
 void Y2023d05::run2() {
 
     std::vector<long long> seeds = StringUtil::getLongLongsFromString(input[0]);
@@ -109,7 +109,7 @@ void Y2023d05::run2() {
     //     block.printMaps();
     //     std::cout << " " << std::endl;
     // }
-    // seedRanges.resize(1); // Keeps only the first element
+    // seedRanges.resize(1);
     std::vector<std::pair<long long, long long>> resultRanges;
     std::vector<std::pair<long long, long long>> intermediateRanges;
     for (size_t i = 0; i < blocks.size(); i++) {
@@ -187,16 +187,10 @@ MappingBlock::calcRanges(std::pair<long long, long long> in) {
     std::vector<std::pair<long long, long long>> out;
     long long start;
     long long end;
-    bool withinAnyRange = false;
     size_t i = 0;
     for (auto &&vec : maps) {
         // Bottom range is below
-        std::cout << "if in first(" << in.first << ") < Low range(" << LOW_RANGE
-                  << ")"
-                  << ", "
-                  << "current max = " << MAX_RANGE << std::endl;
         if (in.first < LOW_RANGE && in.second >= LOW_RANGE) {
-            withinAnyRange = true;
             start = LOW_RANGE + MAP_TO_ADD;
             // spans over range
             if (in.second > MAX_RANGE) {
@@ -210,7 +204,6 @@ MappingBlock::calcRanges(std::pair<long long, long long> in) {
             out.push_back(std::pair<long long, long long>(start, end));
             // bottom range is in current range
         } else if (in.first >= LOW_RANGE && in.first < MAX_RANGE) {
-            withinAnyRange = true;
             start = in.first + MAP_TO_ADD;
             // spans over range
             if (in.second > MAX_RANGE) {
@@ -224,11 +217,12 @@ MappingBlock::calcRanges(std::pair<long long, long long> in) {
                 end = in.second + MAP_TO_ADD;
             }
             out.push_back(std::pair<long long, long long>(start, end));
+        } else if (in.first < LOW_RANGE && in.second < LOW_RANGE && i == 0) {
+            out.push_back(in);
+        } else if (in.first > MAX_RANGE && i == maps.size() - 1) {
+            out.push_back(in);
         }
         i++;
-    }
-    if (!withinAnyRange) {
-        out.push_back(in);
     }
 
     return out;

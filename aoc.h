@@ -13,7 +13,7 @@ class Aoc {
     virtual ~Aoc() = default;
     int start() {
         // int time = 0;
-        run2();
+        run1();
         return 0;
     }
     std::vector<std::string> input;

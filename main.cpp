@@ -1,8 +1,8 @@
 #include "main.h"
 
 int main() {
-    Y2023d05 y2023d05;
-    y2023d05.start();
+    Y2023d06 y2023d06;
+    y2023d06.start();
 
     return 0;
 }

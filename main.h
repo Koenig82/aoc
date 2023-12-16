@@ -3,3 +3,4 @@
 #include "years/2023/day03/day03.h"
 #include "years/2023/day04/day04.h"
 #include "years/2023/day05/day05.h"
+#include "years/2023/day06/day06.h"
