@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+
 #include "../../../aoc.h"
 #include "../../../util/stringUtil.h"
 

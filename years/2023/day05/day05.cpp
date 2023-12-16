@@ -96,6 +96,20 @@ void Y2023d05::run2() {
             blocks.push_back(makeBlockAtIndex(i));
         }
     }
+    // std::vector<std::pair<long long, long long>> resultRanges;
+    // std::vector<std::pair<long long, long long>> intermediateRanges;
+    // for (auto &&seed : seedRanges) {
+    //     intermediateRanges = blocks[0].calcRanges(seed);
+    //     resultRanges.insert(resultRanges.end(), intermediateRanges.begin(),
+    //                         intermediateRanges.end());
+    // }
+    // seedRanges = resultRanges;
+    // resultRanges.clear();
+    // for (auto &&block : blocks) {
+    //     block.printMaps();
+    //     std::cout << " " << std::endl;
+    // }
+    // seedRanges.resize(1); // Keeps only the first element
     std::vector<std::pair<long long, long long>> resultRanges;
     std::vector<std::pair<long long, long long>> intermediateRanges;
     for (size_t i = 0; i < blocks.size(); i++) {
@@ -107,6 +121,19 @@ void Y2023d05::run2() {
         seedRanges = resultRanges;
         resultRanges.clear();
     }
+
+    // std::vector<std::pair<long long, long long>> resultRanges;
+    // std::vector<std::pair<long long, long long>> intermediateRanges;
+    // for (size_t i = 0; i < blocks.size(); i++) {
+    //     for (auto &&seed : seedRanges) {
+    //         intermediateRanges = blocks[i].calcRanges(seed);
+    //         resultRanges.insert(resultRanges.end(),
+    //         intermediateRanges.begin(),
+    //                             intermediateRanges.end());
+    //     }
+    //     seedRanges = resultRanges;
+    //     resultRanges.clear();
+    // }
 
     std::cout << "Ranges fter mapping" << std::endl;
     for (auto &&range : seedRanges) {
@@ -131,6 +158,8 @@ MappingBlock::MappingBlock(const std::vector<std::string> &inputs,
             StringUtil::getLongLongsFromString(inputs[i]);
         maps.push_back(numbers);
     }
+    std::sort(maps.begin(), maps.end(),
+              [](const auto &a, const auto &b) { return a[1] < b[1]; });
 }
 
 void MappingBlock::printMaps() {
@@ -158,52 +187,50 @@ MappingBlock::calcRanges(std::pair<long long, long long> in) {
     std::vector<std::pair<long long, long long>> out;
     long long start;
     long long end;
-    bool presentInRanges = false;
+    bool withinAnyRange = false;
+    size_t i = 0;
     for (auto &&vec : maps) {
         // Bottom range is below
-        if () {
+        std::cout << "if in first(" << in.first << ") < Low range(" << LOW_RANGE
+                  << ")"
+                  << ", "
+                  << "current max = " << MAX_RANGE << std::endl;
+        if (in.first < LOW_RANGE && in.second >= LOW_RANGE) {
+            withinAnyRange = true;
+            start = LOW_RANGE + MAP_TO_ADD;
+            // spans over range
+            if (in.second > MAX_RANGE) {
+                end = MAX_RANGE + MAP_TO_ADD;
+                // ends in range
+            } else {
+                end = in.second + MAP_TO_ADD;
+            }
+            out.push_back(
+                std::pair<long long, long long>(in.first, LOW_RANGE - 1));
+            out.push_back(std::pair<long long, long long>(start, end));
             // bottom range is in current range
         } else if (in.first >= LOW_RANGE && in.first < MAX_RANGE) {
-            presentInRanges = true;
+            withinAnyRange = true;
             start = in.first + MAP_TO_ADD;
-            // high range is in next range
-            if (in.second >= LOW_RANGE && in.second >= MAX_RANGE) {
+            // spans over range
+            if (in.second > MAX_RANGE) {
                 end = MAX_RANGE + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-                // high range is in this range
-            } else if (in.second >= LOW_RANGE && in.second < MAX_RANGE) {
+                if (i == maps.size() - 1) {
+                    out.push_back(
+                        std::pair<long long, long long>(MAX_RANGE, in.second));
+                }
+                // ends in range
+            } else {
                 end = in.second + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-                // high range is outside
-            } else if (in.second > MAX_RANGE) {
-                end = MAX_RANGE + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-                out.push_back(
-                    std::pair<long long, long long>(MAX_RANGE + 1, in.second));
             }
-            // bottom range was in last range
-        } else if (in.first < LOW_RANGE) {
-            presentInRanges = true;
-            start = LOW_RANGE;
-            // high range is in next range
-            if (in.second >= LOW_RANGE && in.second >= MAX_RANGE) {
-                end = MAX_RANGE + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-                // high range is in this range
-            } else if (in.second >= LOW_RANGE && in.second < MAX_RANGE) {
-                end = in.second + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-            } else if (in.second > MAX_RANGE) {
-                end = MAX_RANGE + MAP_TO_ADD;
-                out.push_back(std::pair<long long, long long>(start, end));
-                out.push_back(
-                    std::pair<long long, long long>(MAX_RANGE + 1, in.second));
-            }
+            out.push_back(std::pair<long long, long long>(start, end));
         }
+        i++;
     }
-    if (!presentInRanges) {
+    if (!withinAnyRange) {
         out.push_back(in);
     }
+
     return out;
 }
 
