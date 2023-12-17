@@ -7,7 +7,10 @@ std::vector<std::string> StringUtil::split(const std::string &string,
     std::string item;
 
     while (getline(sstream, item, delim)) {
-        result.push_back(item);
+        if (!item.empty()) { // Omit empty strings caused by consecutive
+                             // delimiters
+            result.push_back(item);
+        }
     }
     return result;
 }
@@ -29,7 +32,8 @@ std::vector<int> StringUtil::getIntsFromString(const std::string &string) {
     return result;
 }
 
-std::vector<long long> StringUtil::getLongLongsFromString(const std::string &string) {
+std::vector<long long>
+StringUtil::getLongLongsFromString(const std::string &string) {
     std::vector<long long> result;
     int numLen = 0;
     int startPos;

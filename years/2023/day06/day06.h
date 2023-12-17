@@ -13,4 +13,6 @@ class Y2023d06 : public Aoc {
     void run2() override;
 
     int calcNumberOfWays(int time, int distance);
+    long long calcNumberOfWaysLarge(long long time, long long distance);
+    long long calcNumberOfWaysLargeGPT(long long time, long long distance);
 };
