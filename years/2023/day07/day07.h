@@ -2,6 +2,7 @@
 
 #include "../../../aoc.h"
 #include "../../../util/stringUtil.h"
+#include <map>
 
 class Y2023d07 : public Aoc {
 
@@ -17,8 +18,14 @@ class Y2023d07 : public Aoc {
 class Hand{
     public:
     int bid;
+    std::map<char,int> cardTypes;
     std::string hand;
+    int score = 0;
+    bool three = false;
+    bool pair = false;
 
     Hand(int inBid, std::string inHand);
     ~Hand() = default;
+
+    void calculateScore();
 };
