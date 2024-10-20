@@ -1,16 +1,9 @@
 #include "day04.h"
 
 Y2023d04::Y2023d04() {
-    std::fstream new_file;
-    std::filesystem::path path("resources/Y2023d04/input.txt");
-    new_file.open(path, std::ios::in);
-    if (new_file.is_open()) {
-        std::string string;
-        while (getline(new_file, string)) {
-            input.push_back(string);
-        }
-        new_file.close();
-    }
+    yearSlashDay = "2023/day04";
+
+    readInput();
 }
 
 Ticket::Ticket(std::vector<int> winNums, std::vector<int> nums) {

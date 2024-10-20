@@ -1,17 +1,36 @@
 #include "day01.h"
+#include <set>
+#include <unordered_set>
 
 Y2018d01::Y2018d01() {
-    std::fstream new_file;
-    std::filesystem::path path("resources/Y2018d01/input.txt");
-    new_file.open(path, std::ios::in);
-    if (new_file.is_open()) {
-        std::string string;
-        while (getline(new_file, string)) {
-            input.push_back(string);
-        }
-        new_file.close();
-    }
+    yearSlashDay = "2018/day01";
+
+    readInput();
 }
 
-void Y2018d01::run1() { std::cout << "day 01 star 1" << std::endl; }
-void Y2018d01::run2() { std::cout << "day 01 star 2" << std::endl; }
+void Y2018d01::run1() {
+
+    int sum = 0;
+    for (std::string line : input) {
+        sum += stoi(line);
+    }
+    std::cout << sum << std::endl;
+
+    return;
+}
+
+void Y2018d01::run2() {
+    std::unordered_set<int> results;
+    results.insert(0);
+    int sum = 0;
+    int numberAsInt = 0;
+
+    for (const auto& numberAsString : input) {
+        numberAsInt = std::stoi(numberAsString);
+        sum += numberAsInt;
+        if (!results.insert(sum).second) {
+            std::cout << sum << std::endl;
+            return;
+        }
+    }
+}

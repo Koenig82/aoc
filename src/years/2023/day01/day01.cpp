@@ -2,16 +2,9 @@
 
 // TODO fix a general implementation of this at aoc.h
 Y2023d01::Y2023d01() {
-    std::fstream new_file;
-    std::filesystem::path path("resources/Y2023d01/input.txt");
-    new_file.open(path, std::ios::in);
-    if (new_file.is_open()) {
-        std::string string;
-        while (getline(new_file, string)) {
-            input.push_back(string);
-        }
-        new_file.close();
-    }
+    yearSlashDay = "2023/day01";
+
+    readInput();
 }
 
 void Y2023d01::run1() {

@@ -1,16 +1,9 @@
 #include "day05.h"
 
 Y2023d05::Y2023d05() {
-    std::fstream new_file;
-    std::filesystem::path path("resources/Y2023d05/input.txt");
-    new_file.open(path, std::ios::in);
-    if (new_file.is_open()) {
-        std::string string;
-        while (getline(new_file, string)) {
-            input.push_back(string);
-        }
-        new_file.close();
-    }
+    yearSlashDay = "2023/day05";
+
+    readInput();
 }
 
 void Y2023d05::run1() {
@@ -51,7 +44,6 @@ void Y2023d05::run1() {
     for (auto&& number : seeds) {
         location = humLoc.calc(
             tempHum.calc(lightTemp.calc(waterLight.calc(fertWater.calc(soilFert.calc(seedsSoil.calc(number)))))));
-        std::cout << location << std::endl;
         if (location < lowest) {
             lowest = location;
         }
@@ -66,10 +58,10 @@ void Y2023d05::run2() {
     for (size_t i = 0; i < seeds.size(); i += 2) {
         seedRanges.push_back(std::pair<long long, long long>(seeds[i], seeds[i] + seeds[i + 1]));
     }
-    std::cout << "Original seeds" << std::endl;
-    for (auto&& range : seedRanges) {
-        std::cout << range.first << " " << range.second << std::endl;
-    }
+    // std::cout << "Original seeds" << std::endl;
+    // for (auto&& range : seedRanges) {
+    //     std::cout << range.first << " " << range.second << std::endl;
+    // }
     std::vector<MappingBlock> blocks;
     for (size_t i = 1; i < input.size(); i++) {
         if (input[i].find("seed-to-soil") != std::string::npos) {
@@ -102,7 +94,7 @@ void Y2023d05::run2() {
     //                         intermediateRanges.end());
     // }
     // seedRanges = resultRanges;
-    // resultRanges.clear();
+    // resultRanges.clear();SS
     // for (auto &&block : blocks) {
     //     block.printMaps();
     //     std::cout << " " << std::endl;
@@ -110,6 +102,7 @@ void Y2023d05::run2() {
     // seedRanges.resize(1);
     std::vector<std::pair<long long, long long>> resultRanges;
     std::vector<std::pair<long long, long long>> intermediateRanges;
+
     for (size_t i = 0; i < blocks.size(); i++) {
         for (auto&& seed : seedRanges) {
             intermediateRanges = blocks[i].calcRanges(seed);
@@ -131,9 +124,11 @@ void Y2023d05::run2() {
     //     seedRanges = resultRanges;
     //     resultRanges.clear();
     // }
+    // std::cout << seedRanges.at(seedRanges.size() - 1).first << std::endl;
 
     std::cout << "Ranges fter mapping" << std::endl;
     for (auto&& range : seedRanges) {
+
         std::cout << range.first << " " << range.second << std::endl;
     }
     // long long lowest = LLONG_MAX;
@@ -145,7 +140,6 @@ void Y2023d05::run2() {
     //         lowest = location;
     //     }
     // }
-    // std::cout << lowest << std::endl;
 }
 
 MappingBlock::MappingBlock(const std::vector<std::string>& inputs, int startindex, int endIndex) {
