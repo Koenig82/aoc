@@ -3,8 +3,7 @@
 
 Y2023d06::Y2023d06() {
     std::fstream new_file;
-    std::filesystem::path path(__FILE__);
-    path.replace_filename("input.txt");
+    std::filesystem::path path("resources/Y2023d06/input.txt");
     new_file.open(path, std::ios::in);
     if (new_file.is_open()) {
         std::string string;
@@ -19,10 +18,10 @@ void Y2023d06::run1() {
     std::vector<int> recordTimes = StringUtil::getIntsFromString(input[0]);
     std::vector<int> recordDistances = StringUtil::getIntsFromString(input[1]);
 
-    for (auto &&time : recordTimes) {
+    for (auto&& time : recordTimes) {
         std::cout << time << std::endl;
     }
-    for (auto &&dist : recordDistances) {
+    for (auto&& dist : recordDistances) {
         std::cout << dist << std::endl;
     }
     int raceSum = 1;
@@ -35,11 +34,9 @@ void Y2023d06::run1() {
 
 void Y2023d06::run2() {
     std::vector<std::string> timeString = StringUtil::split(input[0], ' ');
-    long long time =
-        stoll(timeString[1] + timeString[2] + timeString[3] + timeString[4]);
+    long long time = stoll(timeString[1] + timeString[2] + timeString[3] + timeString[4]);
     std::vector<std::string> distanceString = StringUtil::split(input[1], ' ');
-    long long distance = stoll(distanceString[1] + distanceString[2] +
-                               distanceString[3] + distanceString[4]);
+    long long distance = stoll(distanceString[1] + distanceString[2] + distanceString[3] + distanceString[4]);
     long long result = calcNumberOfWaysLargeGPT(time, distance);
     std::cout << result << std::endl;
 };
@@ -68,8 +65,7 @@ long long Y2023d06::calcNumberOfWaysLarge(long long time, long long distance) {
     return time + 1 - high * 2;
 }
 
-long long Y2023d06::calcNumberOfWaysLargeGPT(long long time,
-                                             long long distance) {
+long long Y2023d06::calcNumberOfWaysLargeGPT(long long time, long long distance) {
 
     // speed * (time - speed) > distance
     // => speed^2 - speed * time + distance < 0

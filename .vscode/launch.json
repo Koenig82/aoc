@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "gdb",
+            "request": "launch",
+            "target": "${workspaceFolder}/out/aoc.exe",
+            "cwd": "${workspaceFolder}/out",
+            "stopAtEntry": false,
+        }
+    ]
+}

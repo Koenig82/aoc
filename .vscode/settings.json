@@ -1,0 +1,6 @@
+{
+    "code-runner.executorMap": {
+        "cpp": "cd C:\\Dev\\projects\\aoc && make && cd out && aoc.exe"
+    },
+    "code-runner.runInTerminal": true
+}

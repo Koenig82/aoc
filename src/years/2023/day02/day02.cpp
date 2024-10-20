@@ -2,8 +2,7 @@
 
 Y2023d02::Y2023d02() {
     std::fstream new_file;
-    std::filesystem::path path(__FILE__);
-    path.replace_filename("input.txt");
+    std::filesystem::path path("resources/Y2023d02/input.txt");
     new_file.open(path, std::ios::in);
     if (new_file.is_open()) {
         std::string string;
@@ -23,14 +22,14 @@ void Y2023d02::run1() {
     int blue;
 
     bool possible;
-    for (auto &&string : input) {
+    for (auto&& string : input) {
         possible = true;
         gameIndex++;
         red = 0;
         green = 0;
         blue = 0;
         std::vector<std::string> sets = StringUtil::split(string, ';');
-        for (auto &&set : sets) {
+        for (auto&& set : sets) {
             red = getAmountOfColorinSet("red", set);
             green = getAmountOfColorinSet("green", set);
             blue = getAmountOfColorinSet("blue", set);
@@ -53,12 +52,12 @@ void Y2023d02::run2() {
     int green;
     int blue;
 
-    for (auto &&string : input) {
+    for (auto&& string : input) {
         red = 0;
         green = 0;
         blue = 0;
         std::vector<std::string> sets = StringUtil::split(string, ';');
-        for (auto &&set : sets) {
+        for (auto&& set : sets) {
             if (getAmountOfColorinSet("red", set) > red) {
                 red = getAmountOfColorinSet("red", set);
             }
@@ -74,7 +73,7 @@ void Y2023d02::run2() {
     std::cout << sum << std::endl;
 }
 
-int Y2023d02::getAmountOfColorinSet(std::string color, std::string &set) {
+int Y2023d02::getAmountOfColorinSet(std::string color, std::string& set) {
     std::string::size_type pos = 0;
     std::string numberString;
     while ((pos = set.find(color, pos)) != std::string::npos) {
