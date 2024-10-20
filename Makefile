@@ -3,15 +3,7 @@ CC = g++
 SRCDIR = src
 OBJDIR = obj
 
-SOURCES := $(wildcard $(SRCDIR)/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/util/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day01/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day02/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day03/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day04/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day05/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day06/*.cpp)
-SOURCES += $(wildcard $(SRCDIR)/years/2023/day07/*.cpp)
+SOURCES := $(shell find $(SRCDIR) -name "*.cpp")
 OBJECTS := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SOURCES))
 DEPENDENCIES := $(OBJECTS:.o=.d)
 

@@ -17,5 +17,7 @@ class Aoc {
         // run2();
         return 0;
     }
+
+  protected:
     std::vector<std::string> input;
 };

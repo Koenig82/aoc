@@ -24,7 +24,6 @@
 
   # Makefile #
   Using g++ compiler (found in msys2)
-  Here each source folder must be added manually to SOURCES variable
   Also names executable
   Additional c/c++ libraries must be added to LIBS variable
   Can be used to suppress warnings by adding such flags to WARNINGS variable
