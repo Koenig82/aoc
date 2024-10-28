@@ -24,13 +24,14 @@ void Y2018d01::run2() {
     results.insert(0);
     int sum = 0;
     int numberAsInt = 0;
-
-    for (const auto& numberAsString : input) {
-        numberAsInt = std::stoi(numberAsString);
-        sum += numberAsInt;
-        if (!results.insert(sum).second) {
-            std::cout << sum << std::endl;
-            return;
+    while (true) {
+        for (const auto& numberAsString : input) {
+            numberAsInt = std::stoi(numberAsString);
+            sum += numberAsInt;
+            if (!results.insert(sum).second) {
+                std::cout << sum << std::endl;
+                return;
+            }
         }
     }
 }
