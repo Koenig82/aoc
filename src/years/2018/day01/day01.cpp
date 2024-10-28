@@ -1,5 +1,4 @@
 #include "day01.h"
-#include <set>
 #include <unordered_set>
 
 Y2018d01::Y2018d01() {
