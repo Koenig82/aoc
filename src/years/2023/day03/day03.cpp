@@ -350,7 +350,6 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
             i = 0;
         }
     }
-
     return 0;
 }
 

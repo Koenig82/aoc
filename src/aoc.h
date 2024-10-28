@@ -1,5 +1,6 @@
 #pragma once
 
+#include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <iostream>
@@ -25,17 +26,22 @@ class Aoc {
         }
     }
     int start() {
-        auto start1 = std::chrono::high_resolution_clock::now();
-        run1();
-        auto end1 = std::chrono::high_resolution_clock::now();
-        auto duration1 = std::chrono::duration_cast<std::chrono::nanoseconds>(end1 - start1);
-        std::cout << "star 1 took " << duration1.count() << " nanoseconds\n";
+        std::chrono::high_resolution_clock::time_point start;
+        std::chrono::high_resolution_clock::time_point end;
 
-        auto start2 = std::chrono::high_resolution_clock::now();
+        start = std::chrono::high_resolution_clock::now();
+        run1();
+        end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double, std::milli> duration1 =
+            std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(end - start);
+        std::cout << "star 1 took " << duration1.count() << " milliseconds\n";
+
+        start = std::chrono::high_resolution_clock::now();
         run2();
-        auto end2 = std::chrono::high_resolution_clock::now();
-        auto duration2 = std::chrono::duration_cast<std::chrono::nanoseconds>(end2 - start2);
-        std::cout << "star 2 took " << duration2.count() << " nanoseconds\n";
+        end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double, std::milli> duration2 =
+            std::chrono::duration_cast<std::chrono::duration<double, std::milli>>(end - start);
+        std::cout << "star 2 took " << duration2.count() << " milliseconds\n";
         return 0;
     }
 

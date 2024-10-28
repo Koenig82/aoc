@@ -125,10 +125,9 @@ long long MappingBlock::calc(const long long in) {
     return out;
 }
 
-#define MAPPING_SOURCE_END ((mapping[1] + mapping[2]) - 1)
-#define MAPPING_SOURCE_START mapping[1]
+#define SOURCE_END ((mapping[1] + mapping[2]) - 1)
+#define SOURCE_START mapping[1]
 #define MAP_DIFF (mapping[0] - mapping[1])
-#define MAP_DIFF2 (mapping[2])
 std::vector<std::pair<long long, long long>> MappingBlock::calcRanges(std::vector<std::pair<long long, long long>> in) {
     bool started;
     size_t mapindex;
@@ -136,41 +135,51 @@ std::vector<std::pair<long long, long long>> MappingBlock::calcRanges(std::vecto
     for (auto&& range : in) { // for each input range:
         started = false;
         mapindex = 0;
-        for (auto&& mapping : maps) {                             // process at each mapping
-            if (range.first < MAPPING_SOURCE_START && !started) { // bottom range is below:
+        for (auto&& mapping : maps) {
+            // bottom range is below:
+            if (range.first < SOURCE_START && !started) {
                 started = true;
-                if (range.second < MAPPING_SOURCE_START) {        // Whole range is below (1 range out: same lower)
+                // Whole range is below (1 range out: same lower)
+                if (range.second < SOURCE_START) {
                     out.push_back(range);
                     break;
-                } else if (range.second <= MAPPING_SOURCE_END) { // ends in range ( 2 range out: same lower, new)
-                    out.push_back(std::pair<long long, long long>(range.first, MAPPING_SOURCE_START - 1));
-                    out.push_back(
-                        std::pair<long long, long long>(MAPPING_SOURCE_START + MAP_DIFF, range.second + MAP_DIFF));
-                    break;
-                } else { //                                spans over range (3 ranges out: same lower, new, cont upper)
-                    out.push_back(std::pair<long long, long long>(range.first, MAPPING_SOURCE_START - 1));
-                    out.push_back(std::pair<long long, long long>(MAPPING_SOURCE_START + MAP_DIFF,
-                                                                  MAPPING_SOURCE_END + MAP_DIFF));
                 }
-            } else if (range.first <= MAPPING_SOURCE_END && !started) { // bottom range starts in range:
+                // ends in range ( 2 range out: same lower, new)
+                else if (range.second <= SOURCE_END) {
+                    out.push_back(std::pair<long long, long long>(range.first, SOURCE_START - 1));
+                    out.push_back(std::pair<long long, long long>(SOURCE_START + MAP_DIFF, range.second + MAP_DIFF));
+                    break;
+                }
+                // spans over range (3 ranges out: same lower, new, cont upper)
+                else {
+                    out.push_back(std::pair<long long, long long>(range.first, SOURCE_START - 1));
+                    out.push_back(std::pair<long long, long long>(SOURCE_START + MAP_DIFF, SOURCE_END + MAP_DIFF));
+                }
+            }
+            // bottom range starts in range:
+            else if (range.first <= SOURCE_END && !started) {
                 started = true;
-                if (range.second <= MAPPING_SOURCE_END) {               // ends in range (1 range out: new)
+                // ends in range (1 range out: new)
+                if (range.second <= SOURCE_END) {
                     out.push_back(std::pair<long long, long long>(range.first + MAP_DIFF, range.second + MAP_DIFF));
                     break;
-                } else { //                                    ends outside range (2 ranges out: new, same upper)
-                    out.push_back(
-                        std::pair<long long, long long>(range.first + MAP_DIFF, MAPPING_SOURCE_END + MAP_DIFF));
                 }
-            } else if (range.second <= MAPPING_SOURCE_END &&
-                       started) { // continued from last range end here (1 range new)
-                out.push_back(
-                    std::pair<long long, long long>(MAPPING_SOURCE_START + MAP_DIFF, range.second + MAP_DIFF));
+                // ends outside range (2 ranges out: new, cont upper)
+                else {
+                    out.push_back(std::pair<long long, long long>(range.first + MAP_DIFF, SOURCE_END + MAP_DIFF));
+                }
+            }
+            // continued from last range end here (1 range new)
+            else if (range.second <= SOURCE_END && started) {
+                out.push_back(std::pair<long long, long long>(SOURCE_START + MAP_DIFF, range.second + MAP_DIFF));
                 break;
-            } else if (range.second > MAPPING_SOURCE_END &&
-                       started) { // continued from last range span over (1 range new)
-                out.push_back(
-                    std::pair<long long, long long>(MAPPING_SOURCE_START + MAP_DIFF, MAPPING_SOURCE_END + MAP_DIFF));
-            } else if (mapindex == maps.size() - 1) { // bottom range outside range (1 range out: same upper)
+            }
+            // continued from last range span over (1 range cont)
+            else if (range.second > SOURCE_END && started) {
+                out.push_back(std::pair<long long, long long>(SOURCE_START + MAP_DIFF, SOURCE_END + MAP_DIFF));
+            }
+            // bottom range outside range (1 range out: same range)
+            else if (mapindex == maps.size() - 1) {
                 out.push_back(std::pair<long long, long long>(range.first, range.second));
                 break;
             }
