@@ -27,8 +27,6 @@ void Y2023d03::run2() {
     gearmap = findGearNumbersInStringIndex();
 
     for (const auto& pair : gearmap) {
-        // std::cout << "Key: " << pair.first << ", Value: " << pair.second
-        //           << std::endl;
         if (pair.second.size() == 2) {
             sum += pair.second.at(0) * pair.second.at(1);
         }
@@ -66,7 +64,8 @@ std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(size_t rowInde
                 }
             }
         }
-    } else if (rowIndex == input.size() - 1) {
+    }
+    else if (rowIndex == input.size() - 1) {
         for (size_t i = 0; i < input[rowIndex].size(); i++) {
             if (isdigit(input[rowIndex][i])) {
                 startpos = i;
@@ -92,7 +91,8 @@ std::vector<int> Y2023d03::findConnectedNumbersInInputIndexString(size_t rowInde
                 }
             }
         }
-    } else {
+    }
+    else {
         for (size_t i = 0; i < input[rowIndex].size(); i++) {
             if (isdigit(input[rowIndex][i])) {
                 startpos = i;
@@ -173,7 +173,8 @@ std::unordered_map<Y2023d03::GearPos, std::vector<int>> Y2023d03::findGearNumber
                         auto it = result.find(GearPos(gearRow, gearCol));
                         if (it != result.end()) {
                             it->second.push_back(stoi(input[rowIndex].substr(startpos, i + 1)));
-                        } else {
+                        }
+                        else {
                             std::vector<int> newValue = {stoi(input[rowIndex].substr(startpos, i + 1))};
                             result[GearPos(gearRow, gearCol)] = newValue;
                         }
@@ -181,7 +182,8 @@ std::unordered_map<Y2023d03::GearPos, std::vector<int>> Y2023d03::findGearNumber
                     }
                 }
             }
-        } else if (rowIndex == input.size() - 1) {
+        }
+        else if (rowIndex == input.size() - 1) {
             for (size_t i = 0; i < input[rowIndex].size(); i++) {
                 if (isdigit(input[rowIndex][i])) {
                     startpos = i;
@@ -222,7 +224,8 @@ std::unordered_map<Y2023d03::GearPos, std::vector<int>> Y2023d03::findGearNumber
                         auto it = result.find(GearPos(gearRow, gearCol));
                         if (it != result.end()) {
                             it->second.push_back(stoi(input[rowIndex].substr(startpos, i + 1)));
-                        } else {
+                        }
+                        else {
                             std::vector<int> newValue = {stoi(input[rowIndex].substr(startpos, i + 1))};
                             result[GearPos(gearRow, gearCol)] = newValue;
                         }
@@ -230,7 +233,8 @@ std::unordered_map<Y2023d03::GearPos, std::vector<int>> Y2023d03::findGearNumber
                     }
                 }
             }
-        } else {
+        }
+        else {
             for (size_t i = 0; i < input[rowIndex].size(); i++) {
                 if (isdigit(input[rowIndex][i])) {
                     startpos = i;
@@ -291,7 +295,8 @@ std::unordered_map<Y2023d03::GearPos, std::vector<int>> Y2023d03::findGearNumber
                         auto it = result.find(GearPos(gearRow, gearCol));
                         if (it != result.end()) {
                             it->second.push_back(stoi(input[rowIndex].substr(startpos, i + 1)));
-                        } else {
+                        }
+                        else {
                             std::vector<int> newValue = {stoi(input[rowIndex].substr(startpos, i + 1))};
                             result[GearPos(gearRow, gearCol)] = newValue;
                         }
@@ -309,8 +314,10 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
     int i = 0;
     int startPos;
     if (gearPosRow == 0) {
-    } else if (gearPosRow == input.size() - 1) {
-    } else {
+    }
+    else if (gearPosRow == input.size() - 1) {
+    }
+    else {
         if (gearPosCol > 0 && isdigit(input[gearPosRow - 1][gearPosCol - 1])) {
             if (gearPosCol > 1 && isdigit(input[gearPosRow - 1][gearPosCol - 2])) {
                 std::cout << "there is backwards search from top left" << std::endl;
@@ -320,7 +327,8 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
                 startPos = gearPosCol - i;
                 std::cout << input[gearPosRow - 1].substr(startPos, i) << std::endl;
                 i = 0;
-            } else {
+            }
+            else {
                 std::cout << "there is forward search from top left" << std::endl;
                 while (isdigit(input[gearPosRow - 1][gearPosCol - 1 + i])) {
                     std::cout << "is digit:" << input[gearPosRow - 1][gearPosCol - 1 + i] << std::endl;
@@ -330,7 +338,8 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
                 std::cout << input[gearPosRow - 1].substr(startPos, i) << std::endl;
                 i = 0;
             }
-        } else if (gearPosCol > 0 && isdigit(input[gearPosRow - 1][gearPosCol])) {
+        }
+        else if (gearPosCol > 0 && isdigit(input[gearPosRow - 1][gearPosCol])) {
             std::cout << "there is forward search from top" << std::endl;
             while (isdigit(input[gearPosRow - 1][gearPosCol + i])) {
                 std::cout << "is digit:" << input[gearPosRow - 1][gearPosCol + i] << std::endl;
@@ -339,7 +348,8 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
             startPos = gearPosCol;
             std::cout << input[gearPosRow - 1].substr(startPos, i) << std::endl;
             i = 0;
-        } else if (gearPosCol > 0 && isdigit(input[gearPosRow - 1][gearPosCol + 1])) {
+        }
+        else if (gearPosCol > 0 && isdigit(input[gearPosRow - 1][gearPosCol + 1])) {
             std::cout << "there is forward search from top right" << std::endl;
             while (isdigit(input[gearPosRow - 1][gearPosCol + 1 + i])) {
                 std::cout << "is digit:" << input[gearPosRow - 1][gearPosCol + 1 + i] << std::endl;
@@ -356,7 +366,8 @@ int Y2023d03::addNumbersAroundGear(const size_t gearPosRow, const int gearPosCol
 bool Y2023d03::isSpecialChar(const char character) {
     if (!isdigit(character) && character != '.') {
         return true;
-    } else {
+    }
+    else {
         return false;
     }
 }

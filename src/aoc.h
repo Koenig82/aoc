@@ -26,10 +26,7 @@ class Aoc {
         }
     }
     int start() {
-        std::cout << "day " << yearSlashDay << std::endl;
-        for (auto&& string : input) {
-            std::cout << string << std::endl;
-        }
+
         std::chrono::high_resolution_clock::time_point start;
         std::chrono::high_resolution_clock::time_point end;
 
