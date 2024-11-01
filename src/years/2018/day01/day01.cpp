@@ -2,7 +2,7 @@
 #include <unordered_set>
 
 Y2018d01::Y2018d01() {
-    yearSlashDay = "2018/day01";
+    resourcePath = "2018/day01";
 
     readInput();
 }

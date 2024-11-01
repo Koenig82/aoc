@@ -1,7 +1,7 @@
 #include "day04.h"
 
 Y2023d04::Y2023d04() {
-    yearSlashDay = "2023/day04";
+    resourcePath = "2023/day04";
 
     readInput();
 }

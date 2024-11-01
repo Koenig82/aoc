@@ -2,7 +2,7 @@
 #include <valarray>
 
 Y2023d06::Y2023d06() {
-    yearSlashDay = "2023/day06";
+    resourcePath = "2023/day06";
 
     readInput();
 }

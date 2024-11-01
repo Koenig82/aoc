@@ -2,7 +2,7 @@
 
 // TODO fix a general implementation of this at aoc.h
 Y2023d01::Y2023d01() {
-    yearSlashDay = "2023/day01";
+    resourcePath = "2023/day01";
 
     readInput();
 }

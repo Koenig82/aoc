@@ -3,7 +3,7 @@
 #include <unordered_map>
 
 Y2018d02::Y2018d02() {
-    yearSlashDay = "2018/day02";
+    resourcePath = "2018/day02";
 
     readInput();
 }

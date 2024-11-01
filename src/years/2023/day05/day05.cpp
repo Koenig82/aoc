@@ -2,7 +2,7 @@
 // #include <cstddef>
 
 Y2023d05::Y2023d05() {
-    yearSlashDay = "2023/day05";
+    resourcePath = "2023/day05";
 
     readInput();
 }

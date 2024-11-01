@@ -15,7 +15,7 @@ class Aoc {
 
     void readInput() {
         std::fstream new_file;
-        std::filesystem::path path("resources/" + yearSlashDay + "/input.txt");
+        std::filesystem::path path("resources/" + resourcePath + "/input.txt");
         new_file.open(path, std::ios::in);
         if (new_file.is_open()) {
             std::string string;
@@ -47,6 +47,6 @@ class Aoc {
     }
 
   protected:
-    std::string yearSlashDay;
+    std::string resourcePath;
     std::vector<std::string> input;
 };

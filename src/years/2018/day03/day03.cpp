@@ -5,7 +5,7 @@
 #include <set>
 
 Y2018d03::Y2018d03() {
-    yearSlashDay = "2018/day03";
+    resourcePath = "2018/day03";
 
     readInput();
 }
