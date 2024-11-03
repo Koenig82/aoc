@@ -146,10 +146,7 @@ void Y2018d04::calculateData(const std::map<int, std::array<int, 60>>& shifts) {
             savedIndex = i;
         }
     }
-    // std::cout << "guard most asleep = " << leaderGuard << " with " << mostMinutesAsleep << " minutes" << std::endl;
-    // std::cout << "The minute guard " << leaderGuard << " spent asleep the most was minute " << savedIndex <<
-    // std::endl;
-    std::cout << "Result = " << (leaderGuard * savedIndex) << std::endl;
+    std::cout << (leaderGuard * savedIndex) << std::endl;
 }
 
 void Y2018d04::calculateData2(const std::map<int, std::array<int, 60>>& shifts) {
@@ -168,7 +165,5 @@ void Y2018d04::calculateData2(const std::map<int, std::array<int, 60>>& shifts) 
         }
     }
 
-    /*System.out.println("The minute most spent asleep by any guard was minute "+minute+
-                                       " by guard "+leaderGuard+" with "+tempMinutes+" minutes");*/
-    std::cout << "Result = " << (leaderGuard * minute) << std::endl;
+    std::cout << (leaderGuard * minute) << std::endl;
 }
