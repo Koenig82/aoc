@@ -19,9 +19,9 @@ class Y2018d04 : public Aoc {
     void run2() override;
 
     std::set<Event> getEvents();
-    std::map<int, std::array<int, 60>> getSleepingShifts(std::set<Event> eventlist);
-    void addSleepingMinutes(std::array<int, 60>& minutes, const TimeUtil::Timestamp first,
-                            const TimeUtil::Timestamp second);
+    std::map<int, std::array<int, 60>> getSleepingShifts(std::set<Event>& eventlist);
+    void addSleepingMinutes(std::array<int, 60>& minutes, const TimeUtil::Timestamp& first,
+                            const TimeUtil::Timestamp& second);
     void calculateData(const std::map<int, std::array<int, 60>>& shifts);
     void calculateData2(const std::map<int, std::array<int, 60>>& shifts);
 };

@@ -66,7 +66,7 @@ std::set<Event> Y2018d04::getEvents() {
     return eventList;
 }
 
-std::map<int, std::array<int, 60>> Y2018d04::getSleepingShifts(std::set<Event> eventlist) {
+std::map<int, std::array<int, 60>> Y2018d04::getSleepingShifts(std::set<Event>& eventlist) {
 
     std::map<int, std::array<int, 60>> shifts;
     TimeUtil::Timestamp latestStamp;
@@ -102,7 +102,8 @@ std::map<int, std::array<int, 60>> Y2018d04::getSleepingShifts(std::set<Event> e
     return shifts;
 }
 
-void Y2018d04::addSleepingMinutes(std::array<int, 60>& minutes, TimeUtil::Timestamp first, TimeUtil::Timestamp second) {
+void Y2018d04::addSleepingMinutes(std::array<int, 60>& minutes, const TimeUtil::Timestamp& first,
+                                  const TimeUtil::Timestamp& second) {
 
     if (first.hour != second.hour) {
         // Fill minutes from first minute to end of the hour
