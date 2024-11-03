@@ -6,8 +6,7 @@
  * @param delim The character to use as the delimiter.
  * @return A vector of strings, split from the input string.
  */
-std::vector<std::string> StringUtil::split(const std::string &string,
-                                           char delim) {
+std::vector<std::string> StringUtil::split(const std::string& string, char delim) {
     std::vector<std::string> result;
     std::stringstream sstream(string);
     std::string item;
@@ -27,7 +26,7 @@ std::vector<std::string> StringUtil::split(const std::string &string,
  * @param string The string to search for integers in.
  * @return A vector of all the integers found in the string.
  */
-std::vector<int> StringUtil::getIntsFromString(const std::string &string) {
+std::vector<int> StringUtil::getIntsFromString(const std::string& string) {
     std::vector<int> result;
     int numLen = 0;
     int startPos;
@@ -50,8 +49,7 @@ std::vector<int> StringUtil::getIntsFromString(const std::string &string) {
  * @param string The string to search for long longs in.
  * @return A vector of all the long longs found in the string.
  */
-std::vector<long long>
-StringUtil::getLongLongsFromString(const std::string &string) {
+std::vector<long long> StringUtil::getLongLongsFromString(const std::string& string) {
     std::vector<long long> result;
     int numLen = 0;
     int startPos;
