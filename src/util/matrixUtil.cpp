@@ -1,4 +1,4 @@
-#include "matrixutil.h"
+#include "matrixUtil.h"
 
 /**
  * Creates a matrix of characters from a vector of strings, where each string

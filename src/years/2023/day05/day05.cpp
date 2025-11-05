@@ -1,5 +1,6 @@
 #include "day05.h"
 // #include <cstddef>
+#include <climits>
 
 Y2023d05::Y2023d05() {
     resourcePath = "2023/day05";
