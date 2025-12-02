@@ -2,12 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch",
-            "type": "gdb",
+            "name": "C++ Launch",
+            "type": "cppdbg",
             "request": "launch",
-            "target": "${workspaceFolder}/out/aoc.exe",
-            "cwd": "${workspaceFolder}/out",
+            "program": "${workspaceFolder}/out/aoc.exe",
+            "args": [],
             "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/out",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "/usr/bin/gdb"
         }
     ]
 }

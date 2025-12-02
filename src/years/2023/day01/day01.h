@@ -3,10 +3,9 @@
 
 #include "../../../aoc.h"
 
-
 class Y2023d01 : public Aoc {
 
-    public:
+  public:
     Y2023d01();
     virtual ~Y2023d01() = default;
 
@@ -14,5 +13,4 @@ class Y2023d01 : public Aoc {
     void run2() override;
 
     int charToInt(char c);
-
 };

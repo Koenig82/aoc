@@ -1,9 +1,9 @@
 #include "main.h"
 
 int main() {
-    Y2023d05 y2023d05;
+    Y2025d01 y2025d01;
 
-    y2023d05.Aoc::start();
+    y2025d01.Aoc::start();
 
     return 0;
 }
