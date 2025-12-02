@@ -11,26 +11,27 @@ Y2025d01::Y2025d01() {
 void Y2025d01::run1() {
     int zeroes = 0;
     int dial = 50;
-    (void)zeroes;
-    (void)dial;
+
     for (std::string line : input) {
         std::cout << line + "\n";
         int number = std::stoi(line.substr(1, 2));
         if (line.at(0) == 'L') {
-            if (dial -= number < 0) {
-                dial = 100 - (dial);
+            if (dial - number < 0) {
+                dial -= number;
+                dial = (100 + dial);
             }
             else {
-                dial -= number % 100;
+                dial -= number;
             }
             std::cout << "Lowering with " + std::to_string(number) << "\n";
         }
         else {
-            if (dial += number > 99) {
-                dial = 100 - dial;
+            if (dial + number > 99) {
+                dial += number;
+                dial = (dial - 100);
             }
             else {
-                dial += number % 100;
+                dial += number;
             }
             std::cout << "Increasing with " + std::to_string(number) << "\n";
         }
