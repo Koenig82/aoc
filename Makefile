@@ -14,10 +14,11 @@ INCLUDES = -Idependencies -Idependencies/include
 STANDARD = -std=c++20
 WARNINGS = # -Wno-missing-field-initializers, example warning
 ERRORFLAGS = -Werror -Wall -Wextra -pedantic-errors
-CFLAGS = -MMD -MP -g $(INCLUDES) $(STANDARD) $(WARNINGS) $(ERRORFLAGS)
+CFLAGS = -MMD -MP -g -O2 -pg -fno-omit-frame-pointer $(INCLUDES) $(STANDARD) $(WARNINGS) $(ERRORFLAGS)
+# -fno-omit-frame-pointer is for profiling  #-O2 optimizations
 
 # Linker flags
-LDFLAGS = -Ldependencies/lib
+LDFLAGS = -Ldependencies/lib -pg
 
 # Libraries
 LIBS = #-lgdi32 -lshell32 -lopengl32 -lwinmm -lraylibdll

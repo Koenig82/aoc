@@ -12,8 +12,8 @@ void Y2023d01::run1() {
     std::regex numbers("(\\d)");
     std::smatch match;
 
-    int numberA;
-    int numberB;
+    int numberA = 0;
+    int numberB = 0;
     int sum = 0;
     for (auto&& string : input) {
         std::sregex_iterator iter(string.begin(), string.end(), numbers);
@@ -37,8 +37,8 @@ void Y2023d01::run1() {
 
 void Y2023d01::run2() {
 
-    int numberA;
-    int numberB;
+    int numberA = 0;
+    int numberB = 0;
     int sum = 0;
 
     for (auto&& string : input) {
