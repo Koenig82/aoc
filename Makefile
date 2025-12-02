@@ -11,7 +11,7 @@ TARGET = out/aoc.exe
 
 # Compiler flags
 INCLUDES = -Idependencies -Idependencies/include
-STANDARD = -std=c++20
+STANDARD = -std=c++23
 WARNINGS = # -Wno-missing-field-initializers, example warning
 ERRORFLAGS = -Werror -Wall -Wextra -pedantic-errors
 CFLAGS = -MMD -MP -g -O2 -pg -fno-omit-frame-pointer $(INCLUDES) $(STANDARD) $(WARNINGS) $(ERRORFLAGS)
